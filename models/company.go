@@ -10,5 +10,6 @@ type Company struct {
 	Website      string `json:"website"`
 	PrimaryEmail string `json:"email" gorm:"unique;not null"`
 
-	Users []User `json:"users"` // Beziehung zu User
+	Users          []User          `json:"users"`
+	TimeEntryTypes []TimeEntryType `json:"timeEntryTypes"`
 }

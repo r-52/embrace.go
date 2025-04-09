@@ -14,11 +14,6 @@ import (
 func main() {
 	prepareEnv()
 
-	dbConnection := os.Getenv("DB_CONNECTION")
-	if dbConnection == "" {
-		dbConnection = "test.db"
-	}
-
 	// Initialize the database
 	// and run the migrations
 	models.OpenDatabase()
