@@ -30,6 +30,8 @@ type TimeEntryType struct {
 	Icon        sql.NullString `json:"icon"`
 	Description sql.NullString `json:"description"`
 
+	InternalUsage int `json:"internalUsage" gorm:"default:0"`
+
 	CompanyID uint    `json:"-"`
 	Company   Company `json:"company"`
 }
