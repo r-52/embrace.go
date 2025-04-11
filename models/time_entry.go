@@ -34,4 +34,8 @@ type TimeEntryType struct {
 
 	CompanyID uint    `json:"-"`
 	Company   Company `json:"company"`
+
+	IsBillable      bool   `json:"isBillable" gorm:"not null,default:false"`
+	IsQuotaRelevant bool   `json:"isQuotaRelevant" gorm:"not null,default:true"`
+	QuotaName       string `json:"quotaName" gorm:"not null,default:'default'"`
 }

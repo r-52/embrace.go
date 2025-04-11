@@ -21,6 +21,15 @@ type User struct {
 	TimeEntries   []TimeEntry `json:"timeEntries"`
 }
 
+type UserQuota struct {
+	gorm.Model
+	QuotaID uint  `json:"-"`
+	Quota   Quota `json:"quota"`
+	UserID  uint  `json:"-"`
+	User    User  `json:"user"`
+	Count   int   `json:"count" gorm:"not null"`
+}
+
 type UserProfile struct {
 	gorm.Model
 

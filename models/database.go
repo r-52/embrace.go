@@ -17,7 +17,7 @@ func OpenDatabase() *gorm.DB {
 		panic("failed to connect database")
 	}
 
-	err = db.AutoMigrate(&Company{}, &User{}, &UserRole{}, &TimeEntry{}, &TimeEntryType{}, &UserProfile{})
+	err = db.AutoMigrate(&Company{}, &User{}, &UserRole{}, &TimeEntry{}, &TimeEntryType{}, &UserProfile{}, &Quota{}, &UserQuota{})
 	if err != nil {
 		panic("failed to migrate database")
 	}

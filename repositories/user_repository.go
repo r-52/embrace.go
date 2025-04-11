@@ -120,7 +120,7 @@ func (r *UserRepository) GetByRoleIDAndCompanyID(roleID, companyID uint) (*model
 // If the user with the specified email is not found or if there is a database error, it returns a non-nil error.
 func (r *UserRepository) GetByEmail(email string) (*models.User, error) {
 	var user models.User
-	err := r.Database.Where("email = ?", email).First(&user).Error
+	err := r.Database.Where("email LIKE ?", email).First(&user).Error
 	if err != nil {
 		return nil, err
 	}
