@@ -10,6 +10,44 @@ type UserRepository struct {
 	Database *gorm.DB
 }
 
+type UserRepositoryInterface interface {
+	// GetByID retrieves a user record from the database by its ID.
+	// It takes an unsigned integer `id` as input and returns a pointer to a `models.User` instance and an error.
+	GetByID(id uint) (*models.User, error)
+
+	// GetPreloadedUserByID retrieves a user record with all associations preloaded by its ID.
+	// It takes an unsigned integer `id` as input and returns a pointer to a `models.User` instance and an error.
+	GetPreloadedUserByID(id uint) (*models.User, error)
+
+	// Create inserts a new user record into the database.
+	// It takes a pointer to a `models.User` instance as input and returns an error.
+	Create(user *models.User) error
+
+	// Update updates an existing user record in the database.
+	// It takes a pointer to a `models.User` instance as input and returns an error.
+	Update(user *models.User) error
+
+	// Delete removes a user record from the database by its ID.
+	// It takes an unsigned integer `id` as input and returns an error.
+	Delete(id uint) error
+
+	// GetUsersByCompanyID retrieves all users associated with a specific company ID.
+	// It takes an unsigned integer `companyID` as input and returns a slice of pointers to `models.User` instances and an error.
+	GetUsersByCompanyID(companyID uint) ([]*models.User, error)
+
+	// GetCountByCompanyID returns the count of users associated with a specific company ID.
+	// It takes an unsigned integer `companyID` as input and returns an integer count and an error.
+	GetCountByCompanyID(companyID uint) (int64, error)
+
+	// GetByRoleIDAndCompanyID retrieves a user record by role ID and company ID.
+	// It takes two unsigned integers `roleID` and `companyID` as input and returns a pointer to a `models.User` instance and an error.
+	GetByRoleIDAndCompanyID(roleID, companyID uint) (*models.User, error)
+
+	// GetByEmail retrieves a user record from the database by its email.
+	// It takes a string `email` as input and returns a pointer to a `models.User` instance and an error.
+	GetByEmail(email string) (*models.User, error)
+}
+
 // NewUserRepository creates a new instance of UserRepository with the provided database connection.
 // It takes a *gorm.DB as an argument, which represents the database connection, and returns a pointer to a UserRepository.
 func NewUserRepository(db *gorm.DB) *UserRepository {

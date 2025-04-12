@@ -9,6 +9,15 @@ type TimeEntryTypeRepository struct {
 	Database *gorm.DB
 }
 
+type TimeEntryTypeRepositoryInterface interface {
+	GetByID(id uint) (*models.TimeEntryType, error)
+	Create(timeEntryType *models.TimeEntryType) error
+	Update(timeEntryType *models.TimeEntryType) error
+	Delete(id uint) error
+	GetByCompanyID(companyID uint) ([]models.TimeEntryType, error)
+	CountByCompanyID(companyID uint) (int64, error)
+}
+
 func NewTimeEntryTypeRepository(db *gorm.DB) *TimeEntryTypeRepository {
 	return &TimeEntryTypeRepository{
 		Database: db,

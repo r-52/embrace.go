@@ -9,6 +9,28 @@ type UserProfileRepository struct {
 	Database *gorm.DB
 }
 
+type UserProfileRepositoryInterface interface {
+	// GetByID retrieves a user profile record from the database by its ID.
+	// It takes an unsigned integer `id` as input and returns a pointer to a `models.UserProfile` instance and an error.
+	// If the user profile with the specified ID is not found or if there is a database error, it returns a non-nil error.
+	GetByID(id uint) (*models.UserProfile, error)
+
+	// Create inserts a new user profile record into the database.
+	// It takes a pointer to a `models.UserProfile` instance as input and returns an error.
+	// If the create operation fails, it returns a non-nil error.
+	Create(userProfile *models.UserProfile) error
+
+	// Update updates an existing user profile record in the database.
+	// It takes a pointer to a `models.UserProfile` instance as input and returns an error.
+	// If the update operation fails, it returns a non-nil error.
+	Update(userProfile *models.UserProfile) error
+
+	// GetBySlug retrieves a user profile record from the database by its slug.
+	// It takes a string `slug` as input and returns a pointer to a `models.UserProfile` instance and an error.
+	// If the user profile with the specified slug is not found or if there is a database error, it returns a non-nil error.
+	GetBySlug(slug string) (*models.UserProfile, error)
+}
+
 // NewUserProfileRepository creates a new instance of UserProfileRepository with the provided database connection.
 // It takes a *gorm.DB as an argument, which represents the database connection, and returns a pointer to a UserProfileRepository.
 func NewUserProfileRepository(db *gorm.DB) *UserProfileRepository {
