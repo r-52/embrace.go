@@ -1,5 +1,5 @@
 package company
 
 type CreateCompanyRequest struct {
-	Name string `json:"name" binding:"required"`
+	Name string `form:"name" json:"name" binding:"required" validate:"required,min=1,max=255"`
 }
