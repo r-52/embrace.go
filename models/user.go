@@ -48,5 +48,7 @@ type UserRole struct {
 	gorm.Model
 	Name string `json:"name" gorm:"unique;not null"`
 
-	InternalUsage int `json:"internalUsage" gorm:"default:0"`
+	InternalUsage int     `json:"internalUsage" gorm:"default:0"`
+	CompanyID     uint    `json:"-"`
+	Company       Company `json:"company"`
 }
