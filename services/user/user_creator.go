@@ -1,6 +1,8 @@
 package user
 
 import (
+	"errors"
+
 	"github.com/r-52/embrace/models"
 	users "github.com/r-52/embrace/models/dto/user"
 	"github.com/r-52/embrace/repositories"
@@ -24,10 +26,7 @@ func (userCreator *UserCreator) CreateUser(req *users.CreateUserRequest) (*users
 		return nil, err
 	}
 	if maybeUser != nil {
-		return &users.CreateUserResponse{
-			ID:    maybeUser.ID,
-			Email: maybeUser.Email,
-		}, nil
+		return nil, errors.New("E1000")
 	}
 	user := models.User{
 		Email:     req.Email,
