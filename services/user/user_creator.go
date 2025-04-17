@@ -59,7 +59,8 @@ func (userCreator *UserCreator) CreateUser(req *users.CreateUserRequest) (*users
 		return nil, err
 	}
 	return &users.CreateUserResponse{
-		ID:    user.ID,
-		Email: user.Email,
+		ID:        user.ID,
+		Email:     user.Email,
+		CompanyID: user.CompanyID,
 	}, nil
 }
