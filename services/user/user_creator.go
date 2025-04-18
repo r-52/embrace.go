@@ -22,7 +22,7 @@ func NewUserCreator(db *gorm.DB) *UserCreator {
 func (userCreator *UserCreator) CreateUser(req *users.CreateUserRequest) (*users.CreateUserResponse, error) {
 	// TODO: validate struct
 	maybeUser, err := userCreator.userRepository.GetByEmail(req.Email)
-	if err != nil {
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, err
 	}
 	if maybeUser != nil {

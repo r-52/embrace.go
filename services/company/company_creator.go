@@ -45,5 +45,5 @@ func (c *CompanyCreator) CreateCompany(req *company.CreateCompanyRequest) (*mode
 		return nil, err
 	}
 
-	return nil, nil
+	return company, nil
 }
